@@ -1,0 +1,31 @@
+- É necessário adicionar um script para fazer o build de ts para js, seria interessante o uso do swc da vercel para adicionar outra questões como minificação do código.
+
+- É necessário adicionar documentação as apis;
+
+- É necessário adicionar validação para os dados entrantes da requisição;
+
+- É necessário adicionar cache para as consultas, sugestão para /travels que aparentemente deva ser a mais usada;
+
+- Seria interessante adicionar um banco apenas para leitura dos dados da viagens, sugestão para o uso no mongodb deste modo evitariamos um join para resgatar os clientes que fazem parte daquela viagem;
+
+OBS: a api de viagem não implementa os clientes na consulta de viagens
+
+- Sobre a separação para uma base de leitura poderiamos utilizar um evento para disparar uma fila ou enviar os dados para uma api secundária;
+
+- O código não separa corretamento seus fragmentos, cada interface precisa ser enviada para a camada de dominio e adicionada dentro do seu devido contexto;
+
+- Factories poderiam ser aplicadas para evitar de termos que montar a classe a ser instanciada dentro da função principal de manipulação;
+
+- Foi adicionado um exemplo de insert usando RawSQL entretanto essa necessidade fica somente a carater de exemplo, essa pratica deve ser aplicada apenas em caso de consultas quando o ORM não tem o devido controle sobre a quantidade de disparos realizados e, deve ser evitada para operações de CREATE/DELETE/UPDATE.
+
+- O CRUD não está completo, falta implementar as operações de UPDATE/DELETE para ambas as apis;
+
+- A cobertura de teste não cobre 100% das funcionalidades e faz se necessário adicionar testes de e2e para a camada da api;
+
+- A validação dos dados dentro das entities deve ser revisto, sugeresse o uso de algum padrão como o Notification ou a criação de uma Factory para injetar algum mecanismo de validação (yup, joi, zod, etc) no excopo da classe.
+
+- Existe uma repetição de código desnecessária a nível de tipos, precisa ser revisada;
+
+- Deve-se adicionar algum schema de log como winston para evitar o uso do console.log e melhorar as mensagens no terminal para captura;
+
+- Substituir o express pelo framework nestjs;
