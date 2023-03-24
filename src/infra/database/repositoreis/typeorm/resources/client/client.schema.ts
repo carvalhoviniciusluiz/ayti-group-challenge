@@ -17,5 +17,15 @@ export const ClientSchema = new EntitySchema<Client>({
     birth: {
       type: Date
     }
-  }
+  },
+  relations: {
+    travel: {
+      type: 'one-to-one',
+      target: 'Travel',
+      joinColumn: {
+        name: 'travel_id',
+        referencedColumnName: 'id',
+      },
+    },
+  },
 });

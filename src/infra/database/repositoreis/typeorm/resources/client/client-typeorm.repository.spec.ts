@@ -1,5 +1,6 @@
 import { DataSource, Repository } from "typeorm";
 import { Client } from "~/domain/entities";
+import { TravelSchema } from "../travel";
 import { ClientTypeOrmRepository } from "./client-typeorm.repository";
 import { ClientSchema } from "./client.schema";
 
@@ -10,7 +11,7 @@ describe('ClientTypeOrmRepository Test', () => {
       database: ':memory:',
       synchronize: true,
       logging: false,
-      entities: [ClientSchema]
+      entities: [ClientSchema, TravelSchema]
     });
     await dataSource.initialize();
     const repository = dataSource.getRepository(Client);

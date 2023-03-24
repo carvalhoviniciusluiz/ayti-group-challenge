@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm";
 import { Client } from "~/domain/entities";
+import { TravelSchema } from "../travel";
 import { ClientSchema } from "./client.schema";
 
 describe('ClientSchema Test', () => {
@@ -9,7 +10,7 @@ describe('ClientSchema Test', () => {
       database: ':memory:',
       synchronize: true,
       logging: false,
-      entities: [ClientSchema]
+      entities: [ClientSchema, TravelSchema]
     });
     await dataSource.initialize();
     const client = Client.create({
