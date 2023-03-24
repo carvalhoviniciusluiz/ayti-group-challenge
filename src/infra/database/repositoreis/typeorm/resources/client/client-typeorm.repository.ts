@@ -1,8 +1,8 @@
 import { Repository } from "typeorm";
 import { Client } from "~/domain/entities";
-import type { InsertClientRepositoryInterface } from "~/domain/repositories/clients";
+import type { FindAllClientsRepositoryInputInterface, FindAllClientsRepositoryOutputInterface, InsertClientRepositoryInterface } from "~/domain/repositories/clients";
 
-export class ClientTypeOrmRepository implements InsertClientRepositoryInterface {
+export class ClientTypeOrmRepository implements InsertClientRepositoryInterface, FindAllClientsRepositoryInputInterface {
   constructor(private readonly repository: Repository<Client>) {}
 
   async insert(client: Client): Promise<void> {
@@ -11,5 +11,8 @@ export class ClientTypeOrmRepository implements InsertClientRepositoryInterface 
       name: client.name,
       birth: new Date(client.birth)
     });
+  }
+  async findAll(input: FindAllClientsRepositoryInputInterface): Promise<FindAllClientsRepositoryOutputInterface[]> {
+    return this.repository.find();
   }
 }

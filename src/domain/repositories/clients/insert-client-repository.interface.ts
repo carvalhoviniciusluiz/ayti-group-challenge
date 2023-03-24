@@ -4,7 +4,6 @@ export interface InsertClientRepositoryInputInterface {
   birth: Date;
 }
 
-
 export interface InsertClientRepositoryInterface {
   insert(input: InsertClientRepositoryInputInterface): Promise<void>;
 }

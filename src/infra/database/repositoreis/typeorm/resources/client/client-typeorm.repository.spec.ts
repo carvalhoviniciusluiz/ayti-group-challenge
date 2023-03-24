@@ -27,4 +27,21 @@ describe('ClientTypeOrmRepository Test', () => {
     const clientFound = await repository.findOneBy({ id: client.id });
     expect(clientFound).toStrictEqual(client);
   });
+  describe('findAll method', () => {
+    function getClientInstance() {
+      return Client.create({
+        name: 'vinicius' + new Date(),
+        birth: new Date()
+      });
+    }
+    it('should return on list with 3 items', async () => {
+      const [clientRepository] = await makeSut();
+      for (let index = 0; index < 3; index++) {
+        const client = getClientInstance();
+        await clientRepository.insert(client);
+      }
+      const clientsFiltered = await clientRepository.findAll({});
+      expect(clientsFiltered).toHaveLength(3);
+    });
+  });
 });

@@ -1,14 +1,18 @@
 import express, { Express, Request, Response } from 'express';
 import { DataSource } from 'typeorm';
-import { CreateClientUseCase } from '~/application/usecases';
+import { CreateClientUseCase, FindAllClientsUseCase } from '~/application/usecases';
 import { Client } from '~/domain/entities';
-import type { InsertClientRepositoryInterface } from '~/domain/repositories/clients';
+import type { FindAllClientsRepositoryInterface, InsertClientRepositoryInterface } from '~/domain/repositories/clients';
 import { postgresDataSource } from '~/infra/database/repositoreis/typeorm/data-sources';
 import { ClientTypeOrmRepository } from '~/infra/database/repositoreis/typeorm/resources/client';
 
 const port = process.env.PORT || 3333;
 const app: Express = express();
-let clientRepository: InsertClientRepositoryInterface;
+
+type ClientRepositoryInterface =
+  InsertClientRepositoryInterface & FindAllClientsRepositoryInterface;
+
+let clientRepository: ClientRepositoryInterface;
 
 app.use(express.json());
 
@@ -31,6 +35,12 @@ app.post('/clients', async (req: Request, res: Response) => {
     });
   }
   res.status(201).json();
+});
+
+app.get('/clients', async (_: Request, res: Response) => {
+  const findAllClientsUseCase = new FindAllClientsUseCase(clientRepository);
+  const output = await findAllClientsUseCase.findAll({});
+  res.status(201).json(output);
 });
 
 postgresDataSource()
