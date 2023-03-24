@@ -5,16 +5,15 @@ import { CreateTravelUseCase } from "./create-travel.usecase";
 describe('CreateTravelUseCase Test', () => {
   it('should create new travel', async () => {
     const repository = new TravelInMemoryRepository();
-    const createTravel = new CreateTravelUseCase(repository);
+    const createTravelUseCase = new CreateTravelUseCase(repository);
     const props = {
-      client: {
-        id: crypto.randomUUID()
-      },
+      clientId: crypto.randomUUID(),
       destination: 'barramas',
       date: new Date()
     }
-    const output = await createTravel.run(props);
+    const output = await createTravelUseCase.run(props);
     expect(repository.travels).toHaveLength(1);
-    expect(output).toStrictEqual({ ...props, id: output.id });
+    const { clientId, ...rest } = props;
+    expect(output).toStrictEqual({ ...rest, client: { id: clientId }, id: output.id });
   });
 })

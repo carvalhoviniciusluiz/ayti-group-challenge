@@ -6,16 +6,20 @@ export class TravelTypeOrmRepository implements InsertTravelRepositoryInterface,
   constructor(private readonly repository: Repository<Travel>) {}
 
   async insert(input: InsertTravelRepositoryInputInterface): Promise<void> {
-    await this.repository.save({
-      id: input.id,
-      destination: input.destination,
-      client: input.client,
-      date: new Date(input.date)
-    } as any);
+    await this.repository.query('INSERT INTO "travels"("id", "client_id", "destination", "date") VALUES ($1, $2, $3, $4)', [
+      input.id ,
+      input.client.id,
+      input.destination,
+      new Date(input.date)
+    ]);
   }
   async findAll(input: FindAllTravelsRepositoryInputInterface): Promise<FindAllTravelsRepositoryOutputInterface[]> {
-    console.log(await this.repository.find());
-
-    return [];
+    const travels = await this.repository.find();
+    const output = travels.map(travel => ({
+      id: travel.id,
+      destination: travel.destination,
+      date: travel.date,
+    }));
+    return output;
   }
 }

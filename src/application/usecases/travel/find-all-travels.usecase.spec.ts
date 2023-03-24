@@ -9,9 +9,7 @@ describe('FindAllTravelsUseCase Test', () => {
     const repository = new TravelInMemoryRepository();
     const createTravelUseCase = new CreateTravelUseCase(repository);
     const props = {
-      client: {
-        id: crypto.randomUUID()
-      },
+      clientId: crypto.randomUUID(),
       destination: 'barramas',
       date: new Date()
     }
@@ -20,6 +18,7 @@ describe('FindAllTravelsUseCase Test', () => {
     expect(repository.travels).toHaveLength(1);
     const filtered = await findAllTravels.findAll({});
     expect(filtered).toHaveLength(1);
-    expect(output).toStrictEqual({ ...props, id: output.id });
+    const { clientId, ...rest } = props;
+    expect(output).toStrictEqual({ ...rest, client: { id: clientId }, id: output.id });
   });
 })
