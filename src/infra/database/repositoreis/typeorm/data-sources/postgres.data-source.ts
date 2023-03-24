@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm";
 import { ClientSchema } from "../resources/client";
+import { TravelSchema } from "../resources/travel";
 
 export const postgresDataSource = async () => {
   const dataSource = new DataSource({
@@ -11,7 +12,7 @@ export const postgresDataSource = async () => {
     database: 'postgres',
     synchronize: true,
     logging: false,
-    entities: [ClientSchema]
+    entities: [ClientSchema, TravelSchema]
   });
   return dataSource.initialize();
 }

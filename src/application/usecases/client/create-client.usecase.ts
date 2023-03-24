@@ -23,7 +23,7 @@ export class CreateClientUseCase implements CreateClientUseCaseInterface {
 
   async run(input: CreateClientUseCaseInputInterface): Promise<CreateClientUseCaseOutputInterface> {
     const client = Client.create(input);
-    await this.repository.insert(client)
+    await this.repository.insert(client.toJSON())
     return client.toJSON();
   }
 }

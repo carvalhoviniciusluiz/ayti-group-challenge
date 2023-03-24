@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import { DataSource } from 'typeorm';
-import { CreateClientUseCase, FindAllClientsUseCase } from '~/application/usecases';
+import { CreateClientUseCase, FindAllClientsUseCase } from '~/application/usecases/client';
 import { Client } from '~/domain/entities';
 import type { FindAllClientsRepositoryInterface, InsertClientRepositoryInterface } from '~/domain/repositories/clients';
 import { postgresDataSource } from '~/infra/database/repositoreis/typeorm/data-sources';
