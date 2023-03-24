@@ -1,5 +1,5 @@
 import { Client } from "~/domain/entities";
-import { InsertClientRepositoryInterface } from "~/infra/database/repositoreis/in-memory";
+import { InsertClientRepositoryInterface } from "~/domain/repositories/clients";
 
 export interface CreateClientUseCaseInputInterface {
   name: string;
@@ -23,7 +23,7 @@ export class CreateClientUseCase implements CreateClientUseCaseInterface {
 
   async run(input: CreateClientUseCaseInputInterface): Promise<CreateClientUseCaseOutputInterface> {
     const client = Client.create(input);
-    await this.repository.insert(client);
+    await this.repository.insert(client)
     return client.toJSON();
   }
 }
