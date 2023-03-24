@@ -1,5 +1,5 @@
+import { Client, ClientProps } from "~/domain/entities";
 import { ClientInMemoryRepository } from "./client-in-memory.repository";
-import { Client, ClientProps } from "./client.entity";
 
 describe('ClientInMemoryRepository Test', () => {
   const props: ClientProps = {

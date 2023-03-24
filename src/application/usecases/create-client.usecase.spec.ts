@@ -1,5 +1,5 @@
-import { ClientInMemoryRepository } from "./client-in-memory.repository";
-import { ClientProps } from "./client.entity";
+import { ClientProps } from "~/domain/entities";
+import { ClientInMemoryRepository } from "~/infra/database/repositoreis/in-memory";
 import { CreateClientUseCase } from "./create-client.usecase";
 
 describe('CreateClientUseCase Test', () => {

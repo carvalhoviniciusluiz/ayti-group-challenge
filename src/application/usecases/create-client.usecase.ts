@@ -1,5 +1,5 @@
-import { InsertClientRepositoryInterface } from "./client-in-memory.repository";
-import { Client } from "./client.entity";
+import { Client } from "~/domain/entities";
+import { InsertClientRepositoryInterface } from "~/infra/database/repositoreis/in-memory";
 
 export interface CreateClientUseCaseInputInterface {
   name: string;
