@@ -22,7 +22,7 @@
 </p>
 
 <p align="center">
-  <a href="" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+  <a href="https://insomnia.rest/run/?label=API&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fcarvalhoviniciusluiz%2Fayti-group-challenge%2Fmain%2F.insomnia%2FInsomnia_2023-03-24.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </p>
 
 Este projeto foi construido utilizando alguns principios do [**Clean Architecture**](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html). Existem vários aspectos que podem ser melhorados no entanto ele consegue passar uma visão geral da arquitetura.
