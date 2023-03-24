@@ -23,6 +23,13 @@ let travelRepository: TravelRepositoryInterface;
 
 app.use(express.json());
 
+/**
+ * - De modo geral optou se pelo uso do express por se um framework mais simples no entanto,
+ * poderiamos substitui-lo pelo nestjs para melhorar a validação dos dados entrantes via requisição,
+ * também poderiamos usar da estrutura de eventos criarmos novas tratativas como disparar uma fila,
+ * persistir em outras bases de dados, adicionar documentação as apis, melhorar a camada de testes, etc.
+ */
+
 app.post('/travels', async (req: Request, res: Response) => {
   const { travel } = req.body;
   try {
