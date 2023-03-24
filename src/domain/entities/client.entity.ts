@@ -1,8 +1,15 @@
 import crypto from 'crypto';
 
+type TravelProps = {
+  id: string;
+  destination: string;
+  date: Date;
+}
+
 export type ClientProps = {
   name: string;
   birth: Date;
+  travel?: TravelProps
 }
 
 type UUID = `${string}-${string}-${string}-${string}-${string}`;
@@ -57,5 +64,13 @@ export class Client {
 
   private set birth(value: Date) {
     this.props.birth = value;
+  }
+
+  get travel() {
+    return this.props.travel as any;
+  }
+
+  private set travel(value: TravelProps) {
+    this.props.travel = value;
   }
 }
