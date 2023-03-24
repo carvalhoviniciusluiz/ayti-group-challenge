@@ -29,7 +29,7 @@ describe('TravelTypeOrmRepository Test', () => {
     const clientRepository = new ClientTypeOrmRepository(repositoryClient);
     const travelRepository = new TravelTypeOrmRepository(repositoryTravel);
     await clientRepository.insert(client);
-    await travelRepository.insert(travel.toJSON());
+    await travelRepository.insert(travel as any);
     const travelFound = await repositoryTravel.findOneBy({ id: travel.id });
     expect(travelFound?.toJSON().id).toBe(travel.id);
   });

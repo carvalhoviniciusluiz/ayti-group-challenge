@@ -1,7 +1,5 @@
 type ClientProps = {
   id: string;
-  name: string;
-  birth: Date;
 }
 
 export interface InsertTravelRepositoryInputInterface {

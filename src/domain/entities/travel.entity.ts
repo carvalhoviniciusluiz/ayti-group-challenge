@@ -4,8 +4,8 @@ type UUID = `${string}-${string}-${string}-${string}-${string}`;
 
 type ClientProps = {
   id: string;
-  name: string;
-  birth: Date;
+  name?: string;
+  birth?: Date;
 }
 
 export type TravelProps = {
