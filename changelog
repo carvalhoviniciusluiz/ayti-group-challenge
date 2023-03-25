@@ -8,7 +8,7 @@
 
 - Seria interessante adicionar um banco apenas para leitura dos dados da viagens, sugestão para o uso no mongodb deste modo evitariamos um join para resgatar os clientes que fazem parte daquela viagem;
 
-OBS: a api de viagem não implementa os clientes na consulta de viagens
+OBS: a api de viagem não implementa os clientes na consulta de viagens;
 
 - Sobre a separação para uma base de leitura poderiamos utilizar um evento para disparar uma fila ou enviar os dados para uma api secundária;
 
@@ -16,7 +16,7 @@ OBS: a api de viagem não implementa os clientes na consulta de viagens
 
 - Factories poderiam ser aplicadas para evitar de termos que montar a classe a ser instanciada dentro da função principal de manipulação;
 
-- Foi adicionado um exemplo de insert usando RawSQL entretanto essa necessidade fica somente a carater de exemplo, essa pratica deve ser aplicada apenas em caso de consultas quando o ORM não tem o devido controle sobre a quantidade de disparos realizados e, deve ser evitada para operações de CREATE/DELETE/UPDATE.
+- Falta validar o id do cliente para viagem a fim de saber se existe antes de fazer a inserção;
 
 - O CRUD não está completo, falta implementar as operações de UPDATE/DELETE para ambas as apis;
 

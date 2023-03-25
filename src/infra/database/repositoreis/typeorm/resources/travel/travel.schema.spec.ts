@@ -9,8 +9,8 @@ describe('TravelSchema Test', () => {
       type: 'sqlite',
       database: ':memory:',
       synchronize: true,
-      logging: false,
-      entities: [TravelSchema, ClientSchema]
+      logging: true,
+      entities: [ClientSchema, TravelSchema]
     });
     await dataSource.initialize();
     const client = Client.create({
@@ -18,14 +18,21 @@ describe('TravelSchema Test', () => {
       birth: new Date()
     });
     const travel = Travel.create({
-      client: client.toJSON(),
+      client,
       destination: 'Parris',
       date: new Date()
     });
     const clientRepository = dataSource.getRepository(Client);
     const travelRepository = dataSource.getRepository(Travel);
-    (await clientRepository.save(client));
-    await travelRepository.save(travel);
+    await clientRepository.save(client);
+    await travelRepository.save({
+      id: travel.id,
+      destination: travel.destination,
+      date: travel.date,
+      client: {
+        id: travel.client.id
+      },
+    });
     const travelFound = await travelRepository.findOneBy({ id: travel.id });
     expect(travel.toJSON().id).toBe(travelFound?.toJSON().id);
   })

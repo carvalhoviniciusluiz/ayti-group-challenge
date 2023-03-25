@@ -25,7 +25,11 @@ export const TravelSchema = new EntitySchema<Travel>({
   relations: {
     clients: {
       type: 'many-to-one',
-      target: 'Client'
+      target: 'Client',
+      joinColumn: {
+        name: 'client_id',
+        referencedColumnName: 'id',
+      },
     },
   },
 });
